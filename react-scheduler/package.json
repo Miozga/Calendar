@@ -1,7 +1,8 @@
 {
   "name": "react-scheduler",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://github.com/Miozga/Calendar.git",
   "dependencies": {
     "@devexpress/dx-react-core": "^4.0.8",
     "@devexpress/dx-react-scheduler": "^4.0.8",
