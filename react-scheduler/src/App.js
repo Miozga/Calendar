@@ -20,23 +20,23 @@ import {
   getFirestore,
   updateDoc,
 } from "firebase/firestore";
-import moment from "moment"; // Import moment.js
-import "moment/locale/pl"; // Import polskiej lokalizacji dla moment.js
+import moment from "moment";
+import "moment/locale/pl";
 import React, { useEffect, useState } from "react";
 
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
-  projectId: "your-project-id",
-  storageBucket: "your-storage-bucket",
-  messagingSenderId: "your-messaging-sender-id",
-  appId: "your-app-id",
+  apiKey: "AIzaSyAhhho5DIY1n8gnILcONulDVCQwVz_-3zo",
+  authDomain: "scheduler-36fad.firebaseapp.com",
+  projectId: "scheduler-36fad",
+  storageBucket: "scheduler-36fad.appspot.com",
+  messagingSenderId: "176705393472",
+  appId: "1:176705393472:web:182c0fc043a15d416ce0a5",
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-moment.locale("pl"); // Ustawienie języka polskiego
+moment.locale("pl");
 
 const App = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -59,18 +59,18 @@ const App = () => {
 
   const addEvent = async (event) => {
     await addDoc(collection(db, "events"), event);
-    fetchEvents(); // odświeżenie wydarzeń
+    fetchEvents();
   };
 
   const updateEvent = async (id, changes) => {
     const eventRef = doc(db, "events", id);
     await updateDoc(eventRef, changes);
-    fetchEvents(); // odświeżenie wydarzeń
+    fetchEvents();
   };
 
   const deleteEvent = async (id) => {
     await deleteDoc(doc(db, "events", id));
-    fetchEvents(); // odświeżenie wydarzeń
+    fetchEvents();
   };
 
   useEffect(() => {
@@ -81,8 +81,8 @@ const App = () => {
     if (added) {
       const eventToAdd = {
         ...added,
-        startDate: added.startDate,
-        endDate: added.endDate,
+        startDate: new Date(added.startDate),
+        endDate: new Date(added.endDate),
       };
       addEvent(eventToAdd);
     }
